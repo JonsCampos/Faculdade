@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <label for="valor1">Valor 1</label>
+  <input id="valor1" type="text" value="99">
+  <br><br>
+  <label for="valor2">Valor 2</label>
+  <input id="valor2" type="text">
+  <br>
+  <br>
+ 
+  <button id="soma">Somar</button>
+  <button id="subtrai">Subtrair</button>
+  <button id="multiplica">Multiplicar</button>
+  <button id="divide">Dividir</button>
+  
+  <br>
+  <br>
+  <input type="text" id="resultado" disabled placeholder="resultado">
+
+ <script>
+//selecao.acao( executa uma funcao)
+// p, button, h1, div
+// $('#aviso1')
+$(document).ready(function(){
+  
+  $("#soma").click(function(){
+   let v1 = Number( $("#valor1").val() );
+   let v2 = Number( $("#valor2").val() );
+   let resultado = v1+v2;
+    $("#resultado").val(resultado);
+  });
+
+   $("#subtrai").click(function(){
+   let v1 = Number( $("#valor1").val() );
+   let v2 = Number( $("#valor2").val() );
+   let resultado = v1-v2;
+    $("#resultado").val(resultado);
+  });
+
+   $("#multiplica").click(function(){
+   let v1 = Number( $("#valor1").val() );
+   let v2 = Number( $("#valor2").val() );
+   let resultado = v1*v2;
+    $("#resultado").val(resultado);
+  });
+  
+   $("#divide").click(function(){
+   let v1 = Number( $("#valor1").val() );
+   let v2 = Number( $("#valor2").val() );
+   let resultado = v1/v2;
+    $("#resultado").val(resultado);
+  });
+  
+  
+});
+
+  
+</script>
+  
+</body>
+
+</html>
