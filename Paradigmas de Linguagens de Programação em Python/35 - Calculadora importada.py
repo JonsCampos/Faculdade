@@ -1,0 +1,11 @@
+import calculadora as ca
+v1 = int(input('Digite o primeiro valor: '))
+v2 = int(input('Digite o segundo valor: '))
+soma = ca.soma(v1, v2)
+prod = ca.mult(v1, v2)
+sub = ca.sub(v1,v2)
+div = ca.div(v1,v2)
+print(f'Soma = {soma}\n')
+print(f'Multiplicação = {prod}\n')
+print(f'Subtração = {sub}\n')
+print(f'Divisão = {div:.2f}\n')
