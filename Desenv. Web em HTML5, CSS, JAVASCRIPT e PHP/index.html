@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="container">
+    
+    <div class="row">
+      <h1> Calculadora com Bootstrap</h1>
+    </div> <!-- fim linha -->
+
+    <div class="row">
+      <div class="mb-3">
+        <label for="valor1" class="form-label">Valor 1</label>
+        <input type="number" class="form-control" id="valor1" placeholder="somente numeros inteiros">
+      </div> <!-- fim entrada valor1 -->
+    </div> <!-- fim linha -->
+    <div class="row">
+      <div class="mb-3">
+        <label for="valor2" class="form-label">Valor 2</label>
+        <input type="number" class="form-control" id="valor2" placeholder="somente numeros inteiros">
+      </div> <!-- fim entrada valor 2 -->
+    </div> <!-- fim linha -->
+
+    <div class="row">
+      <div class="col-3">
+        <button type="button" class="btn btn-primary" onclick="soma()">Soma</button>
+      </div> <!-- fim coluna 1 -->
+      <div class="col-3">
+        <button type="button" class="btn btn-primary" onclick="subtracao()" >Subtração</button>
+      </div> <!-- fim coluna 2 -->
+      <div class="col-3">
+        <button type="button" class="btn btn-primary" onclick="multiplicacao()">Multiplicação</button>
+      </div> <!-- fim coluna 3 -->
+      <div class="col-3">
+        <button type="button" class="btn btn-primary" onclick="divisao()" >Divisão</button>
+      </div> <!-- fim coluna -->
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-12">
+        <input type="text" class="form-control" id="resultado" placeholder="Resultado" disabled="disabled">
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
