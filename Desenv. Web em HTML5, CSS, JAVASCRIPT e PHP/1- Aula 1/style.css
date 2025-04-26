@@ -1,0 +1,26 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+p {color:blueviolet}
+h1 { color: red}
+
+div h1 {color:aquamarine}
+
+.letra {
+   font-family: courier;
+  font-size: 160%;
+}
+
+.cor-azul {
+  color:blue;
+}
+
+.cor-verde {
+  color:	#40ff00;
+}
+
+.cor-rosa {
+  color: #ff00ff
+}
