@@ -1,2 +1,2 @@
 # Faculdade
-Repositório de trabalhos da faculdade 
+Repositório de exercícios e trabalhos da faculdade 
