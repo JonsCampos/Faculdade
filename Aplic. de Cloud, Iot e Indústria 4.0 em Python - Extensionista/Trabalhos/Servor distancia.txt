@@ -1,0 +1,45 @@
+#include <Servo.h>
+ 
+Servo servoMotor;
+int pos;
+const int trigPin = 9;
+const int echoPin = 10;
+
+void setup() {
+  servoMotor.attach(6);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
+  Serial.begin(9600); 
+
+}
+
+void loop() {
+  // Limpa o pino Trig
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Envia o pulso de 10 microssegundos para o Trig
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Lê o tempo do pulso no Echo
+  long duration = pulseIn(echoPin, HIGH);
+
+  // Calcula a distância em centímetros
+  long distance = duration * 0.0344 / 2; // Velocidade do som em cm/us
+
+  // Exibe a distância no Monitor Serial
+  Serial.print("Distancia: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  delay(50);
+
+   if (distance >= 0 && distance <= 20){
+    pos = map(distance, 0, 20, 0, 180);
+    servoMotor.write(pos);
+    delay(500);
+}
+
+}

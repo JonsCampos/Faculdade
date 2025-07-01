@@ -1,0 +1,47 @@
+const int trigPin = 9;
+const int echoPin = 10;
+const int buzzerPin = 11;
+const int ledPin = 13;
+
+void setup() {
+  // Inicializa os pinos
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT); 
+  
+  Serial.begin(9600); 
+}
+
+void loop() {
+  // Limpa o pino Trig
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  
+  // Envia o pulso de 10 microssegundos para o Trig
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // Lê o tempo do pulso no Echo
+  long duration = pulseIn(echoPin, HIGH);
+  
+  // Calcula a distância em centímetros
+  long distance = duration * 0.0344 / 2; // Velocidade do som em cm/us
+  
+  // Exibe a distância no Monitor Serial
+  Serial.print("Distancia: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Feedback sonoro e visual
+  if (distance < 10) {  
+    digitalWrite(buzzerPin, HIGH);
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(buzzerPin, LOW);
+    digitalWrite(ledPin, LOW);
+  }
+  
+  delay(500);
+}

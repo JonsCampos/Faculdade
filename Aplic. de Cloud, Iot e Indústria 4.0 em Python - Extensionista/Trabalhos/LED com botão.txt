@@ -1,0 +1,50 @@
+int ledR = 12;
+int ledG = 11;
+int ledB = 10;
+int btn = 9;
+int estado = 0;
+int estadoAnterior = 0;
+int cont = 0;
+
+void setup() {
+  pinMode(ledR, OUTPUT);
+  pinMode(ledG, OUTPUT);
+  pinMode(ledB, OUTPUT);
+  pinMode(btn, INPUT);
+
+}
+
+void loop() {
+  estado = digitalRead(btn);
+  
+  if (estado == HIGH && estadoAnterior == LOW) { 
+    cont += 1;
+  }
+
+  if (cont == 1){
+    digitalWrite(ledR, HIGH);
+    digitalWrite(ledG, LOW);
+    digitalWrite(ledB, LOW);
+  }
+  else if (cont == 2){
+    digitalWrite(ledR, HIGH);
+    digitalWrite(ledG, HIGH);
+    digitalWrite(ledB, LOW);
+  }
+  else if (cont == 3){
+    digitalWrite(ledR, HIGH);
+    digitalWrite(ledG, HIGH);
+    digitalWrite(ledB, HIGH);
+  }
+  else{
+    digitalWrite(ledR, LOW);
+    digitalWrite(ledG, LOW);
+    digitalWrite(ledB, LOW);
+    cont = 0;
+  }
+
+  estadoAnterior = estado;
+
+  delay(10);
+
+}
