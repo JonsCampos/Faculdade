@@ -1,0 +1,84 @@
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Wifi
+const char* ssid = "Wokwi-GUEST";
+const char* password = "";
+
+// Dados do broker MQTT
+const char* mqtt_broker = "broker.emqx.io";
+const char* topic = "emqx/Trab3_PSB";
+const char* mqtt_username = "emqx";
+const char* mqtt_password = "public";
+const int mqtt_port = 1883;
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void callback(char* topic, byte* message, unsigned int length) {
+
+  String msg = "";
+
+  for (int i = 0; i < length; i++) {
+    msg += (char)message[i];
+  }
+
+  // Exibe a temperatura recebida no display
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Temperatura:");
+  lcd.setCursor(0, 1);
+  lcd.print(msg + " C");
+}
+
+void setup() {
+
+  Serial.begin(115200); // Inicia comunicação serial
+
+  // Inicialização do display
+  lcd.init();
+  lcd.backlight();
+  lcd.clear();
+  lcd.print("Conectando WiFi");
+
+  // Conexão com o Wifi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  lcd.clear();
+  lcd.print("WiFi conectado");
+
+  // Configurações do cliente MQTT
+  client.setServer(mqtt_broker, mqtt_port);
+  client.setCallback(callback);
+
+  // Tentativa de conexão ao servidor MQTT
+  while (!client.connected()) {
+    String client_id = "esp32-display-";
+    client_id += WiFi.macAddress();
+
+    // Tenta conectar
+    if (client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
+      Serial.println("Conectado ao broker MQTT!");
+    } else {
+      delay(2000); // Aguarda 2 segundos antes de tentar novamente
+    }
+  }
+
+  // Inscreve no tópico
+  client.subscribe(topic);
+
+  lcd.clear();
+  lcd.print("Aguardando dados");
+}
+
+void loop() {
+  client.loop();
+}
